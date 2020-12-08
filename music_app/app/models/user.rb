@@ -21,6 +21,7 @@ class User < ApplicationRecord
     # Return the user with the given credentials if found, and if the password matches.
     def self.find_by_credentials(email, pass)
         user = User.find_by(email: email)
+        user.password = pass
         return user if user && user.is_password?(pass)
         nil
     end

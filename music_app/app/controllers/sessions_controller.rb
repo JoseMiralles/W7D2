@@ -5,11 +5,15 @@ class SessionsController < ApplicationController
     end
 
     def create
-        @user = User.find_by_credentials(session_params)
+        p params
+        @user = User.find_by_credentials(
+            params[:user][:email],
+            params[:user][:password]
+            )
         if @user
             @user.reset_session_token!
             session[:session_token] = @user.session_token
-            redirect_to user_url
+            redirect_to users_url
         else
             render :new
         end
@@ -21,6 +25,7 @@ class SessionsController < ApplicationController
         if @user
             @user.reset_session_token!
         end
+        redirect_to new_session_url
     end
 
     private
