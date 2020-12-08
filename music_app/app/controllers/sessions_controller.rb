@@ -5,8 +5,10 @@ class SessionsController < ApplicationController
     end
 
     def create
-        @user = User.find_by(session_params)
+        @user = User.find_by_credentials(session_params)
         if @user
+            @user.reset_session_token!
+            session[:session_token] = @user.session_token
             redirect_to user_url
         else
             render :new
@@ -24,7 +26,7 @@ class SessionsController < ApplicationController
     private
 
     def session_params
-        params.require(:user).allow(:session_token)
+        params.require(:user).permit(:username, :password, :session_token)
     end
 
 end
