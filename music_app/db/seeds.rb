@@ -7,9 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
+Band.destroy_all
 
 users = User.create!([
     {email: "test@email.com", password: "password1234"},
     {email: "test_2@email.com", password: "mypassword"},
     {email: "pizzaman@pizzafans.com", password: "pizzaTime"},
 ])
+
+Band.create!({name: "Despacito Man"})
+(2..10).each do |i|
+    name = "Despacito Man "
+    name += i.to_s
+    Band.create!({name: name})
+end
