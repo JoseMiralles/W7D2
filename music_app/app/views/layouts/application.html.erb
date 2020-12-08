@@ -13,6 +13,8 @@
 
     <header>
 
+    <h4>Music App</h4>
+
       <% if logged_in? %>
 
         <form action="<%= session_url(current_user.id) %>" method="POST">
@@ -27,7 +29,7 @@
 
       <%end%>
 
-    <header>
+    </header>
 
     <%= yield %>
   </body>
