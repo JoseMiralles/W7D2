@@ -1,10 +1,22 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  email           :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
 
     attr_reader :password
 
     validates :email, presence: true, uniqueness: true
     validates :password, :password_digest, :session_token, presence: true
-    
+
     
     # Return the user with the given credentials if found, and if the password matches.
     def self.find_by_credentials(email, pass)
