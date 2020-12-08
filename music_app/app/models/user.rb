@@ -15,7 +15,7 @@ class User < ApplicationRecord
     attr_reader :password
 
     validates :email, presence: true, uniqueness: true
-    validates :password, :password_digest, :session_token, presence: true
+    validates :password_digest, :session_token, presence: true
 
     
     # Return the user with the given credentials if found, and if the password matches.

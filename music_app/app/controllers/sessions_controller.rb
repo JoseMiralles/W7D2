@@ -20,11 +20,7 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-        @user = User.find_by(session_params)
-        session[:session_token] = nil
-        if @user
-            @user.reset_session_token!
-        end
+        log_out_user!
         redirect_to new_session_url
     end
 
